@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Sample calculator'),
+      home: MyHomePage(title: 'Calcolatrice'),
     );
   }
 }
@@ -21,7 +21,7 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-
+  
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -91,10 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildButton(String buttonText) {
     return Expanded(
                   child: new OutlineButton(
-                    padding: new EdgeInsets.all(24.0),
+                    highlightColor: Colors.red,
+                    splashColor: Colors.red[100],
+                    padding: new EdgeInsets.all(30.0),
                     child: new Text(buttonText, 
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold
                       ),),
                     onPressed: () => {
@@ -114,7 +116,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          centerTitle: true,
+          title: Text(widget.title, style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold
+          ),),
+          
         ),
         body: new Container(
           child: new Column(
