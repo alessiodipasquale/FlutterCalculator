@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         //
-
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'Calcolatrice'),
     );
   }
@@ -88,20 +88,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  Widget buildButton(String buttonText) {
+  Widget buildButton(String buttonText, bool isSymbol) {
     return Expanded(
-                  child: new OutlineButton(
-                    highlightColor: Colors.red,
-                    splashColor: Colors.red[100],
-                    padding: new EdgeInsets.all(30.0),
-                    child: new Text(buttonText, 
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),),
-                    onPressed: () => {
-                      buttonPressed(buttonText) 
-                    },
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: new RaisedButton(
+                      color: Color(0xff0b161c),
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
+                      highlightColor: Color(0xff238788),
+                      splashColor: Color(0xff238788),
+                      textColor: isSymbol ? Color(0xff238788) : Colors.white,
+                      padding: new EdgeInsets.all(30.0),
+                      child: new Text(buttonText, 
+                        style: TextStyle(
+                          fontSize: 28,
+                        ),),
+                      onPressed: () => {
+                        buttonPressed(buttonText) 
+                      },
+                    ),
                   ),
                 );
   }
@@ -115,64 +120,59 @@ class _MyHomePageState extends State<MyHomePage> {
     //
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title, style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold
-          ),),
-          
-        ),
+      
         body: new Container(
+          decoration: new BoxDecoration(color: Color(0xff0b161c)),
           child: new Column(
             children: <Widget>[
-              new Container(
-                alignment: Alignment.centerRight,
-                padding: new EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 12
-                  ),
-                child: new Text(output, style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold
-                ),)),
-
-              new Expanded(
-                child: new Divider(),
+              
+              Padding(
+                padding: const EdgeInsets.only(top: 130, bottom: 140),
+                child: new Container(
+                  alignment: Alignment.topRight,
+                  padding: new EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 12
+                    ),
+                  child: new Text(output, style: TextStyle(
+                    fontSize: 50,
+                    color: Color(0xff238788)
+                  ),)),
               ),
+
 
               Column(
                 children: <Widget>[
                   Row(children: [
-                    buildButton('7'),
-                    buildButton('8'),
-                    buildButton('9'),
-                    buildButton('/'),
+                    buildButton('7',false),
+                    buildButton('8',false),
+                    buildButton('9',false),
+                    buildButton('/',true),
                   ]),
 
                   Row(children: [
-                    buildButton('4'),
-                    buildButton('5'),
-                    buildButton('6'),
-                    buildButton('X'),
+                    buildButton('4',false),
+                    buildButton('5',false),
+                    buildButton('6',false),
+                    buildButton('X',true),
                   ]),
 
                   Row(children: [
-                    buildButton('1'),
-                    buildButton('2'),
-                    buildButton('3'),
-                    buildButton('-'),
+                    buildButton('1',false),
+                    buildButton('2',false),
+                    buildButton('3',false),
+                    buildButton('-',true),
                   ]),
 
                   Row(children: [
-                    buildButton('.'),
-                    buildButton('0'),
-                    buildButton('00'),
-                    buildButton('+'),
+                    buildButton('.',false),
+                    buildButton('0',false),
+                    buildButton('00',false),
+                    buildButton('+',true),
                   ]),
                   Row(children: [
-                    buildButton('Cancella'),
-                    buildButton('='),
+                    buildButton('Cancella',true),
+                    buildButton('=',true),
                   ]),
                 ],
               )
