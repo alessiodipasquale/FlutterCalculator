@@ -1,4 +1,4 @@
-# calulator
+# FlutterCalulator
 
 This is simply a calulaor. But so minimal. And so cool.
 
